@@ -63,17 +63,22 @@ final mybox=Hive.box('mybox');
       body: Container(
         height: double.infinity,
         width: double.infinity,
+        
         child: Center(
           child:  Container(
-                height:350,
-                width: double.infinity,
+                height:450,
+                width: 350,
+                padding: EdgeInsets.only(left: 35),
+                decoration: BoxDecoration(
+                  color: Colors.white
+                ),
                 child: 
                 
                 Container(
                   height: 50,
                   width: 350,
                   child: Expanded(child: Column(
-                    // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       SizedBox(height: 25),
                       Text("Enter a UserName"),
@@ -89,7 +94,7 @@ final mybox=Hive.box('mybox');
                           
                         ),
                         ),
-                        SizedBox(height: 15),
+                        SizedBox(height: 20),
                         Text("Enter email"),
                         SizedBox(height: 5,),
                          Container(
@@ -103,7 +108,7 @@ final mybox=Hive.box('mybox');
                           
                         ),
                         ),
-                         SizedBox(height: 15),
+                         SizedBox(height: 20),
                       Text("Enter a password"),
                       SizedBox(height: 5,),
                       Container(
@@ -111,7 +116,8 @@ final mybox=Hive.box('mybox');
                         width: 200,
                         child: TextField(
                           controller: signUpPassword,
-                          decoration: InputDecoration(border: OutlineInputBorder(borderSide: BorderSide(width: 1))
+                          decoration: InputDecoration(
+                            border: OutlineInputBorder(borderSide: BorderSide(width: 1))
                           ,labelText: "Password"
                           ),
                           
@@ -119,24 +125,31 @@ final mybox=Hive.box('mybox');
                         ),
                         SizedBox(height: 30),
 
-                        TextButton(
-                          style: TextButton.styleFrom(
-                            backgroundColor: Colors.blue.shade50,
-                            shape: BeveledRectangleBorder(borderRadius: BorderRadius.circular(5))
+                        Container(
+                          padding: EdgeInsets.only(left: 35),
+                          child: Container(
+                            height: 30,
+                            width: 140,
+                            child: TextButton(
+                              style: TextButton.styleFrom(
+                                backgroundColor: Colors.blue.shade50,
+                                shape: BeveledRectangleBorder(borderRadius: BorderRadius.circular(5))
+                              ),
+                              onPressed: () {
+                              String usrnme=signUpUsername.text;
+                              String pwd=signUpPassword.text;
+                              if(usrnme!=""&&pwd!=""){
+                            hashpwd();
+                              }else{
+                                showDialog(context: context, builder: (context) {
+                                  return AlertDialog(
+                                    title: Text("OOPS!!"),
+                                  );
+                                },);
+                              }
+                            }, child: Text("SUBMIT")),
                           ),
-                          onPressed: () {
-                          String usrnme=signUpUsername.text;
-                          String pwd=signUpPassword.text;
-                          if(usrnme!=""&&pwd!=""){
-hashpwd();
-                          }else{
-                            showDialog(context: context, builder: (context) {
-                              return AlertDialog(
-                                title: Text("OOPS!!"),
-                              );
-                            },);
-                          }
-                        }, child: Text("SUBMIT"))
+                        )
                     ],
                   )),
                 )

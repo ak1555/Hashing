@@ -60,40 +60,65 @@ class _LoginPageState extends State<LoginPage> {
 
 
 
-            void tologin(){
-             String signname= loginPassword.text;
-             var z =hashpassword(loginPassword.text);
-             List li=[];
-             int index=0;
-             int subindex=0;
-              if (mybox.get(1)!=null){
-                li=mybox.get(1);
-                print(li);
-                print(z);
-                for(int i=0;i<=li.length;i++){
-                  String x=li[index]["password"];
-                  for(int j=0;j<=x.length;j++){
-                    if(x[subindex]==z[subindex]){
-                      print("$j same$x===$z");
-                    }else{
-                      print("wrong password");
-                      break;
-                    }
-                    subindex++;
-                  }
+            // void tologin(){
+            //   bool? isValid;
+              
+            //  String signname= loginPassword.text;
+            //  var z =hashpassword(loginPassword.text);
+            //  List li=[];
+            //  int index=0;
+            //  int gblind=0;
+            //  int subindex=0;
+            //  int s=0;
+            //   if (mybox.get(1)!=null){
+            //     li=mybox.get(1);
+            //     print(li);
+            //     print(z);
+            //     for(int i=0;i<=li.length;i++){
+            //       String x=li[index]["password"];
+            //       for(int j=0;j<=x.length;j++){
+            //         if(x[subindex]==z[subindex]){
+            //           // print("$j same$x===$z");
+            //           isValid=true;
+            //           gblind=index;
+            //         }else{
+            //           // print("wrong password");
+            //           isValid=false;
+            //           break;
+            //         }
+            //         subindex++;
+            //       }
 
-                  index++;
-                }
+            //       index++;
+            //     }
+            //     if(isValid==true){
+            //       String n = li[gblind]["username"];
+            //       String m= loginUserName.text;
+            //       for(int k =0;k<=n.length;k++){
+            //           if(n[s]==m[s]){
+            //             isValid_name=true;
+            //           }else{
+            //             isValid_name=false;
+            //           }
+            //           s++;
+            //       }
+            //     }else{
+            //        showDialog(context: context, builder: (context) {
+            //       return AlertDialog(
+            //         title: Text("OOPS!!"),
+            //       );
+            //     },);
+            //     }
                 
 
-              }else{
-                showDialog(context: context, builder: (context) {
-                  return AlertDialog(
-                    title: Text("OOPS!!"),
-                  );
-                },);
-              }
-            }
+            //   }else{
+            //     showDialog(context: context, builder: (context) {
+            //       return AlertDialog(
+            //         title: Text("OOPS!!"),
+            //       );
+            //     },);
+            //   }
+            // }
 
 
 
@@ -104,9 +129,9 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       
-      appBar: AppBar(
-        title: Center(child: Text("Login Page"),),
-      ),
+      // appBar: AppBar(
+      //   title: Center(child: Text("Login Page"),),
+      // ),
       body: Center(
         child: Container(
           height: 500,
@@ -125,6 +150,7 @@ class _LoginPageState extends State<LoginPage> {
             children: [
               SizedBox(height: 15,),
               Text("WELCOME",style: TextStyle(
+                color: Colors.blueAccent.shade700,
                 fontWeight: FontWeight.bold,
                 fontSize: 18
               ),),
@@ -155,8 +181,14 @@ class _LoginPageState extends State<LoginPage> {
                         width: 200,
                         child: TextField(
                           controller: loginUserName,
-                          decoration: InputDecoration(border: OutlineInputBorder(borderSide: BorderSide(width: 1))
-                          ,labelText: "username"
+                          decoration: InputDecoration(
+                            border: OutlineInputBorder(borderSide: BorderSide(width: 1,
+                            color: const Color.fromARGB(255, 2, 47, 87)))
+                          ,labelText: "username",
+                          enabledBorder: OutlineInputBorder(
+                             borderRadius: BorderRadius.circular(25),
+                            borderSide: BorderSide(color: const Color.fromARGB(177, 1, 18, 255))
+                          )
                           ),
                           
                         ),
@@ -168,7 +200,13 @@ class _LoginPageState extends State<LoginPage> {
                         child: TextField(
                           controller: loginPassword,
                           decoration: InputDecoration(border: OutlineInputBorder(borderSide: BorderSide(width: 1))
-                          ,labelText: "Password"
+                          ,labelText: "Password",
+                           enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(25),
+                            borderSide: BorderSide(color: const Color.fromARGB(177, 1, 18, 255),
+                            )
+                          )
+                          
                           ),
                           
                         ),
@@ -177,17 +215,50 @@ class _LoginPageState extends State<LoginPage> {
 
                         TextButton(
                           style: TextButton.styleFrom(
-                            backgroundColor: Colors.blue.shade50,
-                            shape: BeveledRectangleBorder(borderRadius: BorderRadius.circular(5))
+                            backgroundColor: const Color.fromARGB(255, 249, 252, 255),
+                            shape: BeveledRectangleBorder(
+                              side: BorderSide(width: 0.1,color:  const Color.fromARGB(177, 1, 18, 255),),
+                              borderRadius: BorderRadius.circular(5))
                           ),
                           onPressed: () {
+//  String signname= loginPassword.text;
+ var z =hashpassword(loginPassword.text);
+  List li=[];
+   bool? isValid;
+   bool? isValid_name;
+   int gblind=0;
+             int index=0;
+             int s=0;
+             int subindex=0;
+                                               void p(){Navigator.pushNamed(context, "homepage");}
+
+   void data(){
+  // if(isValid==true){
+                  String n = li[gblind]["username"];
+                  String m= loginUserName.text;
+                  for(int k =0;k<=n.length;k++){
+                      if(n[s]==m[s]){
+                        isValid_name=true;
+                        Navigator.pushNamed(context, "homepage");
+                        print("true usrnme");
+                      }else{
+                        isValid_name=false;
+                        print("inco usernme");
+                        break;
+                      }
+                      s++;
+                  }
+                // }else{
+                //    showDialog(context: context, builder: (context) {
+                //   return AlertDialog(
+                //     title: Text("OOPS!!"),
+                //   );
+                // },);
+                // }
+      
+}
 // tologin();
 
- String signname= loginPassword.text;
-             var z =hashpassword(loginPassword.text);
-             List li=[];
-             int index=0;
-             int subindex=0;
               if (mybox.get(1)!=null){
                 li=mybox.get(1);
                 print(li);
@@ -196,10 +267,34 @@ class _LoginPageState extends State<LoginPage> {
                   String x=li[index]["password"];
                   for(int j=0;j<=x.length;j++){
                     if(x[subindex]==z[subindex]){
+                      print("true password");
                       // print("$j same$x===$z");
-                      Navigator.pushNamed(context, "homepage");
+                      // Navigator.pushNamed(context, "homepage");
+                      data();
+                      if(isValid_name==true){
+                        // Navigator.pushNamed(context, "homepage");
+                        p();
+                      }else{
+                        print("incorrect username or password");
+                         showDialog(context: context, builder: (context) {
+                  return AlertDialog(
+                    title: Text("OOPS!!"),
+                    content: Text("Incorrect UserName or password"),
+                    actions: [
+                      TextButton(onPressed: () {
+                        Navigator.pushNamed(context, "loginpage");
+                      }, child: Text("data"))
+                    ],
+                  );
+                },);
+                      }
                     }else{
-                      print("wrong password");
+                      showDialog(context: context, builder: (context) {
+                  return AlertDialog(
+                    title: Text("OOPS!!"),
+                    
+                  );
+                },);
                       break;
                     }
                     subindex++;
@@ -207,16 +302,21 @@ class _LoginPageState extends State<LoginPage> {
 
                   index++;
                 }
-                
 
               }else{
                 showDialog(context: context, builder: (context) {
                   return AlertDialog(
                     title: Text("OOPS!!"),
+                    content: Text("No accounts!!!"),
                   );
                 },);
               }
 
+
+
+if(isValid==true&&isValid_name==true){
+  Navigator.pushNamed(context, "homepage");
+}
 
 
 
@@ -230,7 +330,9 @@ class _LoginPageState extends State<LoginPage> {
 
               TextButton(onPressed: () {
                 Navigator.pushNamed(context, "signuppage");
-              }, child: Text("SIGNUP"))
+              }, child: Text("SIGNUP",style: TextStyle(
+                color:  const Color.fromARGB(177, 1, 18, 255),
+              ),))
 
 
             ],
